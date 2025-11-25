@@ -1,0 +1,12 @@
+{
+  "asset_id": "cam-001",
+  "name": "Denham St NB",
+  "road_name": "Denham Street",
+  "direction_primary": "NB",
+  "timezone": "Australia/Brisbane",
+  "speed_limit_kmh": 60,
+  "coords": [
+    150.5114,
+    -23.3796
+  ]
+}

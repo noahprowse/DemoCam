@@ -1,0 +1,12 @@
+{
+  "asset_id": "cam-003",
+  "name": "Queen St NB",
+  "road_name": "Queen Street",
+  "direction_primary": "NB",
+  "timezone": "Pacific/Auckland",
+  "speed_limit_kmh": 50,
+  "coords": [
+    174.7633,
+    -36.8485
+  ]
+}

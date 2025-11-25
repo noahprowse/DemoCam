@@ -1,0 +1,12 @@
+{
+  "asset_id": "cam-002",
+  "name": "Alice St EB",
+  "road_name": "Alice Street",
+  "direction_primary": "EB",
+  "timezone": "Australia/Brisbane",
+  "speed_limit_kmh": 50,
+  "coords": [
+    153.0302,
+    -27.4735
+  ]
+}
