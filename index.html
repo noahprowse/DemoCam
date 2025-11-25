@@ -1,24 +1,103 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Matrix Traffic & Transport Demo</title>
 
-  <!-- Azure Maps Web SDK v3 -->
-  <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/as.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.js</script>
+  <!-- Azure Maps Web SDK v3 (CSS + JS) -->
+  <link rel="stylesheet"
+        href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.css"
+       mapcontrol/3/atlas.min.js</script>
 
-  <!-- Chart.js for charts -->
-  https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js
-  https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3
+  <!-- Charts (for analytics panels) -->
+  https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js</script>
+  https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3</script>
 
+  <!-- Matrix branding styles -->
   styles.css
 </head>
 <body>
-  <div id="map" style="width:100%;height:100vh;"></div>
+  <header>
+    <div class="brand">
+      logo.svg
+      <div>
+        <h1>Matrix Traffic & Transport Data</h1>
+        <p>Interactive Traffic Map (Azure Static Web Apps Demo)</p>
+      </div>
+    </div>
+    <div class="controls">
+      <label>Time Range
+        <select id="presetRange">
+          <option value="1h">Last 1 hour</option>
+          <option value="24h" selected>Last 24 hours</option>
+          <option value="7d">Last 7 days</option>
+        </select>
+      </label>
+      <label>Timezone
+        <select id="tzSelect">
+          <option value="Australia/Brisbane" selected>Australia/Brisbane (QLD)</option>
+          <option value="Australia/Sydney">Australia/Sydney (NSW)</option>
+          <option value="Australia/Melbourne">Australia/Melbourne (VIC)</option>
+          <option value="Pacific/Auckland">Pacific/Auckland (NZ)</option>
+        </select>
+      </label>
+      <button id="downloadCsv">Download CSV</button>
+      <button id="downloadXlsx">Download Excel</button>
+    </div>
+  </header>
 
-  <!-- Injected key and app logic -->
+  <main>
+    <div id="map" style="width:100%;height:calc(100vh - 64px);"></div>
+    <aside id="panel">
+      <div id="assetMeta">
+        <h2 id="assetName">Select a camera</h2>
+        <p id="assetInfo"></p>
+      </div>
+      <div class="tabs">
+        <button class="tab active" data-tab="counts">Counts</button>
+        <button class="tab" data-tab="direction">Direction</button>
+        <button class="tab" data-tab="speed">Speed</button>
+        <button class="tab" data-tab="table">Data Table</button>
+      </div>
+      <section id="tab-counts" class="tabcontent active">
+        <canvas id="classChart"></canvas>
+        <canvas id="timeseriesChart"></canvas>
+      </section>
+      <section id="tab-direction" class="tabcontent">
+        <canvas id="directionChart"></canvas>
+      </section>
+      <section id="tab-speed" class="tabcontent">
+        <canvas id="speedHistChart"></canvas>
+        <div class="speedStats">
+          <div>Average speed: <span id="avgSpeed">–</span> km/h</div>
+          <div>85th percentile: <span id="p85Speed">–</span> km/h</div>
+        </div>
+      </section>
+      <section id="tab-table" class="tabcontent">
+        <table id="dataTable">
+          <thead>
+            <tr>
+              <th>Time (local)</th>
+              <th>Direction</th>
+              <th>Class</th>
+              <th>Count</th>
+              <th>Avg speed</th>
+              <th>P85 speed</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </aside>
+  </main>
+
+  <footer>
+    <small>Demo only — synthetic data. © Matrix Traffic & Transport Data</small>
+  </footer>
+
+  <!-- Injected key & app logic -->
   maps-key.js</script>
   app.js</script>
 </body>
